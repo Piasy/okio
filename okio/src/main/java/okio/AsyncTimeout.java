@@ -20,7 +20,7 @@ import java.io.InterruptedIOException;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
 
-import static okio.Util.checkOffsetAndCount;
+import static okio.OkioUtil.checkOffsetAndCount;
 
 /**
  * This timeout uses a background thread to take action exactly when the timeout occurs. Use this to

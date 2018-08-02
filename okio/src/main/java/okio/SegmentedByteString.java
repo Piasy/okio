@@ -21,8 +21,8 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 
-import static okio.Util.arrayRangeEquals;
-import static okio.Util.checkOffsetAndCount;
+import static okio.OkioUtil.arrayRangeEquals;
+import static okio.OkioUtil.checkOffsetAndCount;
 
 /**
  * An immutable byte string composed of segments of byte arrays. This class exists to implement

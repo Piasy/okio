@@ -29,7 +29,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Nullable;
 
-import static okio.Util.checkOffsetAndCount;
+import static okio.OkioUtil.checkOffsetAndCount;
 
 /** Essential APIs for working with Okio. */
 public final class Okio {

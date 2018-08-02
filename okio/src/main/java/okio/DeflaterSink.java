@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.zip.Deflater;
 import org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement;
 
-import static okio.Util.checkOffsetAndCount;
+import static okio.OkioUtil.checkOffsetAndCount;
 
 /**
  * A sink that uses <a href="http://tools.ietf.org/html/rfc1951">DEFLATE</a> to
@@ -143,7 +143,7 @@ public final class DeflaterSink implements Sink {
     }
     closed = true;
 
-    if (thrown != null) Util.sneakyRethrow(thrown);
+    if (thrown != null) OkioUtil.sneakyRethrow(thrown);
   }
 
   @Override public Timeout timeout() {

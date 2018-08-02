@@ -251,7 +251,7 @@ final class RealBufferedSink implements BufferedSink {
     }
     closed = true;
 
-    if (thrown != null) Util.sneakyRethrow(thrown);
+    if (thrown != null) OkioUtil.sneakyRethrow(thrown);
   }
 
   @Override public Timeout timeout() {

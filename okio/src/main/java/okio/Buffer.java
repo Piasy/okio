@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-import static okio.Util.checkOffsetAndCount;
-import static okio.Util.reverseBytesLong;
+import static okio.OkioUtil.checkOffsetAndCount;
+import static okio.OkioUtil.reverseBytesLong;
 
 /**
  * A collection of bytes in memory.
@@ -411,15 +411,15 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
   }
 
   @Override public short readShortLe() {
-    return Util.reverseBytesShort(readShort());
+    return OkioUtil.reverseBytesShort(readShort());
   }
 
   @Override public int readIntLe() {
-    return Util.reverseBytesInt(readInt());
+    return OkioUtil.reverseBytesInt(readInt());
   }
 
   @Override public long readLongLe() {
-    return Util.reverseBytesLong(readLong());
+    return OkioUtil.reverseBytesLong(readLong());
   }
 
   @Override public long readDecimalLong() {
@@ -599,14 +599,14 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
 
   @Override public String readUtf8() {
     try {
-      return readString(size, Util.UTF_8);
+      return readString(size, OkioUtil.UTF_8);
     } catch (EOFException e) {
       throw new AssertionError(e);
     }
   }
 
   @Override public String readUtf8(long byteCount) throws EOFException {
-    return readString(byteCount, Util.UTF_8);
+    return readString(byteCount, OkioUtil.UTF_8);
   }
 
   @Override public String readString(Charset charset) {
@@ -999,7 +999,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
           "endIndex > string.length: " + endIndex + " > " + string.length());
     }
     if (charset == null) throw new IllegalArgumentException("charset == null");
-    if (charset.equals(Util.UTF_8)) return writeUtf8(string, beginIndex, endIndex);
+    if (charset.equals(OkioUtil.UTF_8)) return writeUtf8(string, beginIndex, endIndex);
     byte[] data = string.substring(beginIndex, endIndex).getBytes(charset);
     return write(data, 0, data.length);
   }
@@ -1084,7 +1084,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
   }
 
   @Override public Buffer writeShortLe(int s) {
-    return writeShort(Util.reverseBytesShort((short) s));
+    return writeShort(OkioUtil.reverseBytesShort((short) s));
   }
 
   @Override public Buffer writeInt(int i) {
@@ -1101,7 +1101,7 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
   }
 
   @Override public Buffer writeIntLe(int i) {
-    return writeInt(Util.reverseBytesInt(i));
+    return writeInt(OkioUtil.reverseBytesInt(i));
   }
 
   @Override public Buffer writeLong(long v) {

@@ -107,7 +107,7 @@ public final class GzipSink implements Sink {
     }
     closed = true;
 
-    if (thrown != null) Util.sneakyRethrow(thrown);
+    if (thrown != null) OkioUtil.sneakyRethrow(thrown);
   }
 
   /**

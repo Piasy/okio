@@ -17,11 +17,11 @@ package okio;
 
 import java.nio.charset.Charset;
 
-final class Util {
+final class OkioUtil {
   /** A cheap and type-safe constant for the UTF-8 Charset. */
   public static final Charset UTF_8 = Charset.forName("UTF-8");
 
-  private Util() {
+  private OkioUtil() {
   }
 
   public static void checkOffsetAndCount(long size, long offset, long byteCount) {
@@ -62,7 +62,7 @@ final class Util {
    * catch and rethrow exceptions after cleanup. See Java Puzzlers #43.
    */
   public static void sneakyRethrow(Throwable t) {
-    Util.<Error>sneakyThrow2(t);
+    OkioUtil.<Error>sneakyThrow2(t);
   }
 
   @SuppressWarnings("unchecked")
