@@ -61,7 +61,7 @@ public class ByteString implements Serializable, Comparable<ByteString> {
   transient int hashCode; // Lazily computed; 0 if unknown.
   transient String utf8; // Lazily computed.
 
-  ByteString(byte[] data) {
+  public ByteString(byte[] data) {
     this.data = data; // Trusted internal constructor doesn't clone data.
   }
 

@@ -25,7 +25,6 @@ import java.io.InterruptedIOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Nullable;
 
@@ -139,7 +138,8 @@ public final class Okio {
           sink.size += bytesRead;
           return bytesRead;
         } catch (AssertionError e) {
-          if (isAndroidGetsocknameError(e)) throw new IOException(e);
+          if (e.getCause() != null && e.getMessage() != null
+              && e.getMessage().contains("getsockname failed")) throw new IOException(e);
           throw e;
         }
       }
@@ -236,12 +236,13 @@ public final class Okio {
         try {
           socket.close();
         } catch (Exception e) {
-          logger.log(Level.WARNING, "Failed to close timed out socket " + socket, e);
+          //logger.log(Level.WARNING, "Failed to close timed out socket " + socket, e);
         } catch (AssertionError e) {
-          if (isAndroidGetsocknameError(e)) {
+          if (e.getCause() != null && e.getMessage() != null
+              && e.getMessage().contains("getsockname failed")) {
             // Catch this exception due to a Firmware issue up to android 4.2.2
             // https://code.google.com/p/android/issues/detail?id=54072
-            logger.log(Level.WARNING, "Failed to close timed out socket " + socket, e);
+            //logger.log(Level.WARNING, "Failed to close timed out socket " + socket, e);
           } else {
             throw e;
           }
